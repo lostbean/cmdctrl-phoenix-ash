@@ -1,0 +1,417 @@
+<%!--
+Layout Examples - Page Layout Patterns with Tailwind CSS
+Based on: DESIGN/ui/layout-patterns.md
+See also: ../reference/tailwind.md#layouts
+--%>
+
+<%!-- ========================================
+     NAVBAR LAYOUT
+     ======================================== --%>
+
+<%!-- Basic navbar --%>
+<nav class="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+  <div class="flex-1">
+    <a href="/" class="text-xl font-bold text-slate-900 dark:text-white">My App</a>
+  </div>
+  <div class="flex items-center gap-6">
+    <a href="/dashboard" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Dashboard</a>
+    <a href="/resources" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Resources</a>
+    <a href="/settings" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Settings</a>
+  </div>
+</nav>
+
+<%!-- Navbar with user menu --%>
+<nav class="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+  <div class="flex-1">
+    <a href="/" class="text-xl font-bold text-slate-900 dark:text-white">My App</a>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="relative" x-data="{ open: false }">
+      <button @click="open = !open" class="w-10 h-10 rounded-full bg-slate-600 text-white flex items-center justify-center text-sm font-medium">
+        JD
+      </button>
+      <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1">
+        <a href="/profile" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700">Profile</a>
+        <a href="/settings" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700">Settings</a>
+        <a href="/logout" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<%!-- ========================================
+     SIDEBAR LAYOUT (Project Pattern)
+     ======================================== --%>
+
+<%!-- Fixed sidebar (actual project pattern) --%>
+<div class="flex h-screen">
+  <%!-- Sidebar --%>
+  <aside class="w-80 border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col">
+    <%!-- Brand Identity --%>
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center text-lg font-semibold">
+          M
+        </div>
+        <div>
+          <p class="font-semibold text-lg text-slate-900 dark:text-white">My App</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Application Tagline</p>
+        </div>
+      </div>
+    </div>
+
+    <%!-- Navigation --%>
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+      <nav>
+        <ul class="space-y-1">
+          <li>
+            <a href="/dashboard" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-white bg-rose-500 rounded-lg">
+              <.icon name="hero-home" class="size-4" /> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="/resources" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg dark:text-slate-400 dark:hover:bg-slate-800">
+              <.icon name="hero-circle-stack" class="size-4" /> Resources
+            </a>
+          </li>
+          <li>
+            <a href="/settings" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg dark:text-slate-400 dark:hover:bg-slate-800">
+              <.icon name="hero-cog-6-tooth" class="size-4" /> Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <%!-- Flexible content area --%>
+    <div class="flex-1 overflow-y-auto">
+      <%!-- Dynamic content --%>
+    </div>
+
+    <%!-- User profile (sticky at bottom) --%>
+    <div class="border-t border-slate-200 dark:border-slate-700 px-6 py-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-slate-600 text-white flex items-center justify-center text-sm font-medium">
+          JD
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-slate-900 dark:text-white truncate">john@example.com</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Member</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <%!-- Main content area --%>
+  <main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950">
+    <%!-- Page content --%>
+  </main>
+</div>
+
+
+<%!-- ========================================
+     HERO SECTION
+     ======================================== --%>
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
+  <div class="text-center max-w-md">
+    <h1 class="text-5xl font-bold text-slate-900 dark:text-white">Hello there</h1>
+    <p class="py-6 text-slate-600 dark:text-slate-400">
+      Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+      exercitationem quasi.
+    </p>
+    <button class="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+      Get Started
+    </button>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     CARD GRID LAYOUT
+     ======================================== --%>
+
+<%!-- Responsive grid of cards --%>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Card 1</h2>
+    <p class="text-slate-600 dark:text-slate-400">Card content</p>
+    <div class="flex justify-end mt-4">
+      <button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">View</button>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Card 2</h2>
+    <p class="text-slate-600 dark:text-slate-400">Card content</p>
+    <div class="flex justify-end mt-4">
+      <button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">View</button>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Card 3</h2>
+    <p class="text-slate-600 dark:text-slate-400">Card content</p>
+    <div class="flex justify-end mt-4">
+      <button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">View</button>
+    </div>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     TWO-COLUMN LAYOUT
+     ======================================== --%>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+  <%!-- Main content (2 columns on large screens) --%>
+  <div class="lg:col-span-2">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Main Content</h2>
+      <p class="text-slate-600 dark:text-slate-400">Primary content area</p>
+    </div>
+  </div>
+
+  <%!-- Sidebar (1 column on large screens) --%>
+  <div class="lg:col-span-1">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Sidebar</h2>
+      <p class="text-slate-600 dark:text-slate-400">Secondary content</p>
+    </div>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     FOOTER LAYOUT
+     ======================================== --%>
+
+<footer class="bg-slate-100 dark:bg-slate-800 px-6 py-10">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center text-xl font-semibold">
+          M
+        </div>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">
+        My App<br />
+        Your tagline here
+      </p>
+    </div>
+    <div>
+      <h6 class="font-semibold text-slate-900 dark:text-white mb-4">Services</h6>
+      <ul class="space-y-2">
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Features</a></li>
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Solutions</a></li>
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6 class="font-semibold text-slate-900 dark:text-white mb-4">Company</h6>
+      <ul class="space-y-2">
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">About us</a></li>
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Contact</a></li>
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Privacy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6 class="font-semibold text-slate-900 dark:text-white mb-4">Legal</h6>
+      <ul class="space-y-2">
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Terms of use</a></li>
+        <li><a href="#" class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Privacy policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+<%!-- ========================================
+     BREADCRUMBS
+     ======================================== --%>
+
+<nav class="text-sm" aria-label="Breadcrumb">
+  <ol class="flex items-center gap-2">
+    <li class="flex items-center gap-2">
+      <a href="/" class="text-slate-600 hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-200">Home</a>
+    </li>
+    <li class="flex items-center gap-2">
+      <span class="text-slate-400">/</span>
+      <a href="/resources" class="text-slate-600 hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-200">Resources</a>
+    </li>
+    <li class="flex items-center gap-2">
+      <span class="text-slate-400">/</span>
+      <span class="text-slate-400 dark:text-slate-500">Database Connection</span>
+    </li>
+  </ol>
+</nav>
+
+
+<%!-- ========================================
+     STATS LAYOUT
+     ======================================== --%>
+
+<%!-- Horizontal stats --%>
+<div class="flex gap-6 p-4 bg-white dark:bg-slate-800 rounded-lg shadow">
+  <div class="flex-1 text-center">
+    <div class="text-sm text-slate-500 dark:text-slate-400">Total Items</div>
+    <div class="text-3xl font-bold text-slate-900 dark:text-white">8</div>
+    <div class="text-xs text-slate-400">All items</div>
+  </div>
+
+  <div class="flex-1 text-center border-l border-slate-200 dark:border-slate-700">
+    <div class="text-sm text-slate-500 dark:text-slate-400">Active</div>
+    <div class="text-3xl font-bold text-emerald-500">8</div>
+    <div class="text-xs text-slate-400">100% active</div>
+  </div>
+
+  <div class="flex-1 text-center border-l border-slate-200 dark:border-slate-700">
+    <div class="text-sm text-slate-500 dark:text-slate-400">Records</div>
+    <div class="text-3xl font-bold text-slate-900 dark:text-white">12</div>
+    <div class="text-xs text-slate-400">Total records</div>
+  </div>
+</div>
+
+<%!-- Vertical stats --%>
+<div class="w-full bg-white dark:bg-slate-800 rounded-lg shadow divide-y divide-slate-200 dark:divide-slate-700">
+  <div class="py-3 px-4">
+    <div class="text-xs text-slate-500 dark:text-slate-400">Total items</div>
+    <div class="text-2xl font-bold text-slate-900 dark:text-white">8</div>
+  </div>
+  <div class="py-3 px-4">
+    <div class="text-xs text-slate-500 dark:text-slate-400">Active</div>
+    <div class="text-2xl font-bold text-emerald-500">8</div>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     TABS LAYOUT
+     ======================================== --%>
+
+<%!-- Tab navigation --%>
+<div class="flex gap-2 p-1 bg-slate-200 dark:bg-slate-700 rounded-lg w-fit">
+  <button class="px-4 py-2 text-sm font-medium bg-white dark:bg-slate-600 text-slate-900 dark:text-white rounded-md shadow">Table</button>
+  <button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Chart</button>
+  <button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Summary</button>
+</div>
+
+<%!-- Tabs with content sections --%>
+<div>
+  <div class="flex border-b border-slate-200 dark:border-slate-700 mb-4">
+    <button class="px-4 py-2 text-sm font-medium text-rose-600 border-b-2 border-rose-500">General</button>
+    <button class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Security</button>
+    <button class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Notifications</button>
+  </div>
+
+  <div class="p-4 text-slate-600 dark:text-slate-400">
+    <%!-- Tab content --%>
+    <p>Tab content goes here</p>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     DIVIDER
+     ======================================== --%>
+
+<div class="flex flex-col w-full gap-4">
+  <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+    Section 1
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex-1 border-t border-slate-200 dark:border-slate-700"></div>
+    <span class="text-sm text-slate-500 dark:text-slate-400">OR</span>
+    <div class="flex-1 border-t border-slate-200 dark:border-slate-700"></div>
+  </div>
+  <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+    Section 2
+  </div>
+</div>
+
+
+<%!-- ========================================
+     CENTERED CONTAINER
+     ======================================== --%>
+
+<div class="container mx-auto px-4">
+  <%!-- Centered content with max width --%>
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Page Title</h1>
+    <p class="text-slate-600 dark:text-slate-400">Content goes here</p>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     FULL PAGE LAYOUT EXAMPLE
+     ======================================== --%>
+
+<%!-- Complete layout pattern --%>
+<div class="flex h-screen bg-slate-50 dark:bg-slate-950">
+  <%!-- Sidebar (fixed width) --%>
+  <aside class="w-80 border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col">
+    <%!-- Sidebar content --%>
+    <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center text-lg font-semibold">
+          M
+        </div>
+        <div>
+          <p class="font-semibold text-lg text-slate-900 dark:text-white">My App</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Application Tagline</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto">
+      <%!-- Scrollable sidebar content --%>
+    </div>
+
+    <div class="border-t border-slate-200 dark:border-slate-700 px-6 py-4">
+      <%!-- User profile section --%>
+    </div>
+  </aside>
+
+  <%!-- Main content area (flexible width) --%>
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <%!-- Header --%>
+    <header class="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-lg font-semibold text-slate-900 dark:text-white">Page Title</h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Page description</p>
+        </div>
+        <button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+          Action
+        </button>
+      </div>
+    </header>
+
+    <%!-- Scrollable content --%>
+    <div class="flex-1 overflow-y-auto px-6 py-4">
+      <%!-- Main page content --%>
+    </div>
+  </main>
+</div>
+
+
+<%!-- ========================================
+     RESPONSIVE DESIGN NOTES
+     ======================================== --%>
+
+<%!--
+Tailwind responsive prefixes:
+- sm: 640px (small tablets)
+- md: 768px (tablets)
+- lg: 1024px (laptops)
+- xl: 1280px (desktops)
+- 2xl: 1536px (large desktops)
+
+Common patterns:
+- grid-cols-1 md:grid-cols-2 lg:grid-cols-3 (responsive grid)
+- hidden md:block (hide on mobile, show on tablet+)
+- flex-col md:flex-row (stack on mobile, row on tablet+)
+- w-full md:w-1/2 lg:w-1/3 (responsive widths)
+--%>

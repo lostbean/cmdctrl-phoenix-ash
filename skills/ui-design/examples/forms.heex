@@ -1,0 +1,393 @@
+<%!--
+Form Examples - Tailwind CSS Form Components and Validation
+Based on: lib/my_app_web/components/core_components.ex
+See also: ../reference/tailwind.md#forms
+--%>
+
+<%!-- ========================================
+     TEXT INPUTS
+     ======================================== --%>
+
+<%!-- Basic input --%>
+<input
+  type="text"
+  placeholder="Type here"
+  class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+/>
+
+<%!-- Input sizes --%>
+<input
+  type="text"
+  placeholder="Small"
+  class="px-2 py-1 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+/>
+
+<input
+  type="text"
+  placeholder="Medium"
+  class="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+/>
+
+<input
+  type="text"
+  placeholder="Large"
+  class="px-4 py-3 text-lg border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+/>
+
+
+<%!-- ========================================
+     CORE COMPONENT INPUT (Project Pattern)
+     ======================================== --%>
+
+<%!-- Using core component input with label and errors --%>
+<.input
+  field={@form[:email]}
+  type="email"
+  label="Email Address"
+  placeholder="you@example.com"
+/>
+
+<%!-- Input with custom class --%>
+<.input
+  field={@form[:name]}
+  type="text"
+  label="Name"
+  class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500"
+/>
+
+<%!-- Input with validation state --%>
+<.input
+  field={@form[:username]}
+  type="text"
+  label="Username"
+  errors={["Username is required"]}
+/>
+
+
+<%!-- ========================================
+     TEXTAREAS
+     ======================================== --%>
+
+<%!-- Basic textarea --%>
+<textarea
+  class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+  placeholder="Enter description"
+  rows="4"
+></textarea>
+
+<%!-- Textarea with error state --%>
+<textarea
+  class="w-full px-3 py-2 border border-red-500 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-slate-800 dark:text-slate-100"
+  placeholder="This field has an error"
+></textarea>
+
+<%!-- Using core component textarea --%>
+<.input
+  field={@form[:description]}
+  type="textarea"
+  label="Description"
+  placeholder="Describe your model..."
+/>
+
+
+<%!-- ========================================
+     SELECT DROPDOWNS
+     ======================================== --%>
+
+<%!-- Basic select --%>
+<select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+  <option disabled selected>Select an option</option>
+  <option>Option 1</option>
+  <option>Option 2</option>
+  <option>Option 3</option>
+</select>
+
+<%!-- Using core component select --%>
+<.input
+  field={@form[:status]}
+  type="select"
+  label="Status"
+  options={["Active", "Inactive", "Pending"]}
+  prompt="Select status..."
+/>
+
+<%!-- Select from actual project (sidebar filter) --%>
+<div class="space-y-1">
+  <label class="text-xs uppercase text-slate-600 dark:text-slate-400">Status</label>
+  <select
+    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+    phx-change="filter_status"
+    name="status"
+  >
+    <option value="all" selected={@status_filter == "all"}>All</option>
+    <option value="healthy" selected={@status_filter == "healthy"}>Healthy</option>
+    <option value="warning" selected={@status_filter == "warning"}>Warning</option>
+    <option value="error" selected={@status_filter == "error"}>Error</option>
+  </select>
+</div>
+
+
+<%!-- ========================================
+     CHECKBOXES
+     ======================================== --%>
+
+<%!-- Basic checkbox --%>
+<input
+  type="checkbox"
+  class="size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700"
+/>
+
+<input
+  type="checkbox"
+  class="size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700"
+  checked
+/>
+
+<%!-- Using core component checkbox --%>
+<.input
+  field={@form[:accept_terms]}
+  type="checkbox"
+  label="I accept the terms and conditions"
+/>
+
+<%!-- Checkbox with label and description (project pattern) --%>
+<label class="flex items-start gap-3 cursor-pointer">
+  <input
+    type="checkbox"
+    class="mt-1 size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700"
+    checked
+  />
+  <div class="flex-1">
+    <div class="flex items-center gap-2">
+      <span class="font-medium text-slate-900 dark:text-slate-100">Customer</span>
+      <span class="px-1.5 py-0.5 text-xs bg-emerald-100 text-emerald-700 rounded-full dark:bg-emerald-900 dark:text-emerald-300">95% confidence</span>
+    </div>
+    <p class="text-sm text-slate-600 dark:text-slate-400">
+      Primary business entity for customer data
+    </p>
+  </div>
+</label>
+
+
+<%!-- ========================================
+     RADIO BUTTONS
+     ======================================== --%>
+
+<%!-- Basic radio group --%>
+<div class="space-y-2">
+  <label class="flex items-center gap-2 cursor-pointer">
+    <input
+      type="radio"
+      name="radio-group"
+      class="size-4 border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700"
+      checked
+    />
+    <span class="text-slate-900 dark:text-slate-100">Option 1</span>
+  </label>
+  <label class="flex items-center gap-2 cursor-pointer">
+    <input
+      type="radio"
+      name="radio-group"
+      class="size-4 border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700"
+    />
+    <span class="text-slate-900 dark:text-slate-100">Option 2</span>
+  </label>
+</div>
+
+
+<%!-- ========================================
+     TOGGLE SWITCHES
+     ======================================== --%>
+
+<%!-- Toggle using checkbox with custom styling --%>
+<label class="relative inline-flex items-center cursor-pointer">
+  <input type="checkbox" class="sr-only peer" />
+  <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-rose-500 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-500 dark:bg-slate-700"></div>
+</label>
+
+
+<%!-- ========================================
+     FORM LAYOUTS
+     ======================================== --%>
+
+<%!-- Form with fieldset (project pattern) --%>
+<div class="space-y-2">
+  <label class="block">
+    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
+    <input
+      type="email"
+      name="email"
+      class="mt-1 w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+    />
+  </label>
+</div>
+
+<%!-- Form control with label and helper text --%>
+<div class="space-y-1">
+  <label class="block">
+    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Pick a file</span>
+    <input
+      type="file"
+      class="mt-1 w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-rose-50 file:text-rose-700 hover:file:bg-rose-100 dark:text-slate-400 dark:file:bg-slate-700 dark:file:text-slate-300"
+    />
+  </label>
+  <p class="text-xs text-slate-500 dark:text-slate-400">PNG, JPG up to 10MB</p>
+</div>
+
+
+<%!-- ========================================
+     VALIDATION STATES
+     ======================================== --%>
+
+<%!-- Error state from core_components.ex --%>
+<div class="space-y-2">
+  <label class="block">
+    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Username</span>
+    <input
+      type="text"
+      name="username"
+      class="mt-1 w-full px-3 py-2 border border-red-500 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-slate-800 dark:text-slate-100"
+    />
+  </label>
+  <p class="flex gap-2 items-center text-sm text-red-500">
+    <.icon name="hero-exclamation-circle" class="size-5" />
+    Username is required
+  </p>
+</div>
+
+<%!-- Success state --%>
+<input
+  type="text"
+  class="w-full px-3 py-2 border border-emerald-500 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-slate-800 dark:text-slate-100"
+  value="Valid input"
+/>
+
+<%!-- Warning state --%>
+<input
+  type="text"
+  class="w-full px-3 py-2 border border-amber-500 rounded-lg focus:ring-2 focus:ring-amber-500 dark:bg-slate-800 dark:text-slate-100"
+  value="Warning state"
+/>
+
+
+<%!-- ========================================
+     LIVEVIEW FORM INTEGRATION
+     ======================================== --%>
+
+<%!-- Form with phx-submit --%>
+<.form for={@form} phx-submit="save" class="space-y-4">
+  <.input field={@form[:name]} type="text" label="Name" />
+  <.input field={@form[:email]} type="email" label="Email" />
+  <.input field={@form[:description]} type="textarea" label="Description" />
+
+  <div class="pt-4">
+    <.button type="submit" variant="primary">Save</.button>
+  </div>
+</.form>
+
+<%!-- Search input with phx-change and debounce --%>
+<div class="space-y-1">
+  <label class="text-xs uppercase text-slate-600 dark:text-slate-400">Search</label>
+  <input
+    type="search"
+    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+    placeholder="Search sources..."
+    value={@search_query}
+    phx-change="search"
+    phx-debounce="300"
+    name="query"
+  />
+</div>
+
+<%!-- Dynamic input with LiveView assigns --%>
+<input
+  type="text"
+  class={[
+    "w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-rose-500 dark:bg-slate-800 dark:text-slate-100",
+    if(@errors != [], do: "border-red-500 focus:ring-red-500", else: "border-slate-300 dark:border-slate-600")
+  ]}
+  value={@value}
+  phx-change="update_value"
+/>
+
+
+<%!-- ========================================
+     SEARCH INPUTS
+     ======================================== --%>
+
+<%!-- Search input with icon --%>
+<div class="relative">
+  <input
+    type="text"
+    placeholder="Search..."
+    class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+  />
+  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <.icon name="hero-magnifying-glass" class="size-5 text-slate-400" />
+  </div>
+</div>
+
+
+<%!-- ========================================
+     COMMON PATTERNS FROM PROJECT
+     ======================================== --%>
+
+<%!-- Data source filters (from sidebar) --%>
+<div class="space-y-4">
+  <div class="space-y-1">
+    <label class="text-xs uppercase text-slate-600 dark:text-slate-400">Search</label>
+    <input
+      type="search"
+      class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      placeholder="Search sources..."
+      value={@search_query}
+      phx-change="search"
+      name="query"
+    />
+  </div>
+
+  <div class="space-y-1">
+    <label class="text-xs uppercase text-slate-600 dark:text-slate-400">Sort by</label>
+    <select
+      class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      phx-change="sort"
+      name="by"
+    >
+      <option value="updated" selected={@sort_by == "updated"}>Last updated</option>
+      <option value="name" selected={@sort_by == "name"}>Name</option>
+      <option value="status" selected={@sort_by == "status"}>Status</option>
+    </select>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     ACCESSIBILITY NOTES
+     ======================================== --%>
+
+<%!--
+Best practices for accessible forms:
+1. Always include labels for inputs
+2. Use placeholder as hint, not as label replacement
+3. Provide clear error messages
+4. Use appropriate input types (email, tel, number, etc.)
+5. Add aria-label for icon-only buttons
+6. Ensure focus states are visible
+--%>
+
+<%!-- INCORRECT: Input without label --%>
+<input
+  type="text"
+  placeholder="Email"
+  class="w-full px-3 py-2 border border-slate-300 rounded-lg"
+/>
+
+<%!-- CORRECT: Input with proper label --%>
+<label class="block">
+  <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
+  <input
+    type="email"
+    placeholder="you@example.com"
+    class="mt-1 w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+  />
+</label>

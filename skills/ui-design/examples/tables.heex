@@ -1,0 +1,441 @@
+<%!--
+Table Examples - Tailwind CSS Table Patterns
+Based on: lib/{app_name}_web/components/core_components.ex
+See also: ../reference/tailwind.md#tables
+--%>
+
+<%!-- ========================================
+     BASIC TABLE
+     ======================================== --%>
+
+<%!-- Basic Tailwind table --%>
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Name</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Email</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">John Doe</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">john@example.com</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Admin</td>
+    </tr>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Jane Smith</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">jane@example.com</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Member</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     TABLE WITH ZEBRA STRIPING
+     ======================================== --%>
+
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Column 1</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Column 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800 even:bg-slate-50 dark:even:bg-slate-800/50">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Row 1</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Data</td>
+    </tr>
+    <tr class="border-b border-slate-100 dark:border-slate-800 even:bg-slate-50 dark:even:bg-slate-800/50">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Row 2</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Data</td>
+    </tr>
+    <tr class="border-b border-slate-100 dark:border-slate-800 even:bg-slate-50 dark:even:bg-slate-800/50">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Row 3</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Data</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     CORE COMPONENT TABLE (Project Pattern)
+     ======================================== --%>
+
+<%!-- Using core component table (from core_components.ex) --%>
+<.table id="users" rows={@users}>
+  <:col :let={user} label="ID">{user.id}</:col>
+  <:col :let={user} label="Username">{user.username}</:col>
+  <:col :let={user} label="Email">{user.email}</:col>
+</.table>
+
+<%!-- Table with actions column --%>
+<.table id="resources" rows={@resources}>
+  <:col :let={resource} label="Name">{resource.name}</:col>
+  <:col :let={resource} label="Type">{resource.type}</:col>
+  <:col :let={resource} label="Status">
+    <span class={[
+      "px-2 py-1 text-xs font-medium rounded-full",
+      resource.status == "healthy" && "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
+      resource.status == "error" && "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
+    ]}>
+      {resource.status}
+    </span>
+  </:col>
+  <:action :let={resource}>
+    <button class="px-3 py-1 text-sm bg-transparent hover:bg-slate-100 text-slate-700 rounded transition-colors dark:hover:bg-slate-800 dark:text-slate-300" phx-click="edit" phx-value-id={resource.id}>
+      Edit
+    </button>
+  </:action>
+  <:action :let={resource}>
+    <button class="px-3 py-1 text-sm bg-transparent hover:bg-slate-100 text-slate-700 rounded transition-colors dark:hover:bg-slate-800 dark:text-slate-300" phx-click="delete" phx-value-id={resource.id}>
+      Delete
+    </button>
+  </:action>
+</.table>
+
+
+<%!-- ========================================
+     TABLE WITH CLICKABLE ROWS
+     ======================================== --%>
+
+<%!-- Table with row_click handler --%>
+<.table
+  id="models"
+  rows={@models}
+  row_click={fn model -> JS.navigate(~p"/model/#{model.id}") end}
+>
+  <:col :let={model} label="Name">{model.name}</:col>
+  <:col :let={model} label="Version">{model.version}</:col>
+  <:col :let={model} label="Updated">
+    {format_relative_time(model.updated_at)}
+  </:col>
+</.table>
+
+
+<%!-- ========================================
+     TABLE WITH BADGES AND STATUS
+     ======================================== --%>
+
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Connection</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Tables</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Status</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3">
+        <div class="font-medium text-slate-900 dark:text-slate-100">Database Connection</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">postgres://...</div>
+      </td>
+      <td class="px-4 py-3">
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">45 tables</span>
+      </td>
+      <td class="px-4 py-3">
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">Healthy</span>
+      </td>
+      <td class="px-4 py-3">
+        <span class="text-sm text-slate-600 dark:text-slate-400">2 hours ago</span>
+      </td>
+    </tr>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3">
+        <div class="font-medium text-slate-900 dark:text-slate-100">CSV Upload</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">customers.csv</div>
+      </td>
+      <td class="px-4 py-3">
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">1 table</span>
+      </td>
+      <td class="px-4 py-3">
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300">Processing</span>
+      </td>
+      <td class="px-4 py-3">
+        <span class="text-sm text-slate-600 dark:text-slate-400">Just now</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     TABLE WITH AVATARS
+     ======================================== --%>
+
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">User</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Role</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-slate-600 text-white flex items-center justify-center text-sm font-medium">
+            JD
+          </div>
+          <div>
+            <div class="font-medium text-slate-900 dark:text-slate-100">John Doe</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">john@example.com</div>
+          </div>
+        </div>
+      </td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Admin</td>
+      <td class="px-4 py-3">
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">Active</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     RESPONSIVE TABLE
+     ======================================== --%>
+
+<%!-- Overflow wrapper for mobile --%>
+<div class="overflow-x-auto">
+  <table class="w-full text-left">
+    <thead class="border-b border-slate-200 dark:border-slate-700">
+      <tr>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Name</th>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Description</th>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Created</th>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Modified</th>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Status</th>
+        <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-slate-100 dark:border-slate-800 even:bg-slate-50 dark:even:bg-slate-800/50">
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Item 1</td>
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Long description that might wrap on small screens</td>
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Jan 1, 2024</td>
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Jan 15, 2024</td>
+        <td class="px-4 py-3">
+          <span class="px-2 py-1 text-xs font-medium rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">Active</span>
+        </td>
+        <td class="px-4 py-3">
+          <button class="px-3 py-1 text-sm bg-transparent hover:bg-slate-100 text-slate-700 rounded transition-colors dark:hover:bg-slate-800 dark:text-slate-300">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<%!-- ========================================
+     TABLE WITH SELECTION
+     ======================================== --%>
+
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3">
+        <input type="checkbox" class="size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700" />
+      </th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Name</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Email</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3">
+        <input type="checkbox" class="size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700" />
+      </td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">John Doe</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">john@example.com</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Admin</td>
+    </tr>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3">
+        <input type="checkbox" class="size-4 rounded border-slate-300 text-rose-500 focus:ring-rose-500 dark:border-slate-600 dark:bg-slate-700" />
+      </td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Jane Smith</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">jane@example.com</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">Member</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     TABLE WITH SORTING
+     ======================================== --%>
+
+<%!-- Table with sortable headers --%>
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3">
+        <button class="flex items-center gap-1 text-sm font-semibold text-slate-900 dark:text-slate-100" phx-click="sort" phx-value-by="name">
+          Name
+          <.icon
+            :if={@sort_by == "name"}
+            name={if @sort_order == :asc, do: "hero-chevron-up", else: "hero-chevron-down"}
+            class="size-4"
+          />
+        </button>
+      </th>
+      <th class="px-4 py-3">
+        <button class="flex items-center gap-1 text-sm font-semibold text-slate-900 dark:text-slate-100" phx-click="sort" phx-value-by="created">
+          Created
+          <.icon
+            :if={@sort_by == "created"}
+            name={if @sort_order == :asc, do: "hero-chevron-up", else: "hero-chevron-down"}
+            class="size-4"
+          />
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for item <- @sorted_items do %>
+      <tr class="border-b border-slate-100 dark:border-slate-800">
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{item.name}</td>
+        <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{format_date(item.created_at)}</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     TABLE WITH PAGINATION
+     ======================================== --%>
+
+<div class="space-y-4">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left">
+      <thead class="border-b border-slate-200 dark:border-slate-700">
+        <tr>
+          <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Item</th>
+          <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for item <- @page_items do %>
+          <tr class="border-b border-slate-100 dark:border-slate-800 even:bg-slate-50 dark:even:bg-slate-800/50">
+            <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{item.name}</td>
+            <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{item.value}</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%!-- Pagination controls --%>
+  <div class="flex justify-between items-center">
+    <div class="text-sm text-slate-500 dark:text-slate-400">
+      Showing {@offset + 1} to {@offset + length(@page_items)} of {@total} results
+    </div>
+    <div class="flex rounded-lg overflow-hidden border border-slate-300 dark:border-slate-600">
+      <button
+        class={[
+          "px-4 py-2 text-sm transition-colors",
+          if(@page == 1,
+            do: "bg-slate-100 text-slate-400 cursor-not-allowed dark:bg-slate-800",
+            else: "bg-white hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300")
+        ]}
+        phx-click="prev_page"
+        disabled={@page == 1}
+      >
+        Previous
+      </button>
+      <div class="px-4 py-2 text-sm bg-slate-100 text-slate-600 border-x border-slate-300 dark:bg-slate-700 dark:text-slate-400 dark:border-slate-600">
+        Page {@page}
+      </div>
+      <button
+        class={[
+          "px-4 py-2 text-sm transition-colors",
+          if(@page >= @total_pages,
+            do: "bg-slate-100 text-slate-400 cursor-not-allowed dark:bg-slate-800",
+            else: "bg-white hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300")
+        ]}
+        phx-click="next_page"
+        disabled={@page >= @total_pages}
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<%!-- ========================================
+     EMPTY STATE TABLE
+     ======================================== --%>
+
+<table class="w-full text-left">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Name</th>
+      <th class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= if Enum.empty?(@items) do %>
+      <tr>
+        <td colspan="2" class="text-center py-8">
+          <div class="flex flex-col items-center gap-2 text-slate-500 dark:text-slate-400">
+            <.icon name="hero-inbox" class="size-12" />
+            <p>No items found</p>
+            <button class="mt-2 px-4 py-2 text-sm bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors" phx-click="create_new">
+              Create First Item
+            </button>
+          </div>
+        </td>
+      </tr>
+    <% else %>
+      <%= for item <- @items do %>
+        <tr class="border-b border-slate-100 dark:border-slate-800">
+          <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{item.name}</td>
+          <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{item.status}</td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%!-- ========================================
+     ACCESSIBILITY NOTES
+     ======================================== --%>
+
+<%!--
+Table accessibility best practices:
+1. Always use <thead> and <tbody> for proper structure
+2. Use <th> for header cells with scope attribute when needed
+3. Provide clear column headers
+4. Use semantic markup (<table>, not divs)
+5. Ensure sufficient color contrast in cells
+6. Make clickable rows keyboard accessible
+7. Add aria-label for icon-only actions
+8. Use aria-sort for sortable columns
+--%>
+
+<table class="w-full text-left" aria-label="User list">
+  <thead class="border-b border-slate-200 dark:border-slate-700">
+    <tr>
+      <th scope="col" class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100" aria-sort={if @sort_by == "name", do: @sort_order, else: "none"}>
+        Name
+      </th>
+      <th scope="col" class="px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-b border-slate-100 dark:border-slate-800">
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">John Doe</td>
+      <td class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">john@example.com</td>
+    </tr>
+  </tbody>
+</table>

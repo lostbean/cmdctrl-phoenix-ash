@@ -1,0 +1,249 @@
+<%!--
+Button Examples - Tailwind CSS Button Variants and Patterns
+Based on: DESIGN/ui/design-system-guide.md
+See also: ../reference/tailwind.md#buttons
+--%>
+
+<%!-- ========================================
+     BASIC BUTTON VARIANTS
+     ======================================== --%>
+
+<%!-- Primary Button --%>
+<button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+  Primary Action
+</button>
+
+<%!-- Secondary Button --%>
+<button class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-lg font-semibold transition-colors dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100">
+  Secondary Action
+</button>
+
+<%!-- Outline Button --%>
+<button class="px-4 py-2 border-2 border-slate-300 hover:border-slate-400 text-slate-700 rounded-lg font-semibold transition-colors dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300">
+  Outline Action
+</button>
+
+
+<%!-- ========================================
+     BUTTON SIZES
+     ======================================== --%>
+
+<button class="px-2 py-1 text-xs bg-rose-500 hover:bg-rose-600 text-white rounded font-semibold transition-colors">
+  Extra Small
+</button>
+
+<button class="px-3 py-1.5 text-sm bg-rose-500 hover:bg-rose-600 text-white rounded-md font-semibold transition-colors">
+  Small
+</button>
+
+<button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+  Medium (default)
+</button>
+
+<button class="px-6 py-3 text-lg bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+  Large
+</button>
+
+
+<%!-- ========================================
+     BUTTON STATES
+     ======================================== --%>
+
+<%!-- Disabled state --%>
+<button class="px-4 py-2 bg-slate-300 text-slate-500 rounded-lg font-semibold cursor-not-allowed" disabled>
+  Disabled Button
+</button>
+
+<%!-- Loading state --%>
+<button class="px-4 py-2 bg-rose-500 text-white rounded-lg font-semibold flex items-center gap-2" disabled>
+  <span class="animate-spin size-4 border-2 border-white border-t-transparent rounded-full"></span>
+  Processing...
+</button>
+
+<%!-- Dynamic loading state with LiveView --%>
+<button class={[
+  "px-4 py-2 rounded-lg font-semibold transition-colors",
+  if(@loading, do: "bg-slate-300 text-slate-500 cursor-not-allowed", else: "bg-rose-500 hover:bg-rose-600 text-white")
+]}>
+  Submit
+</button>
+
+
+<%!-- ========================================
+     LIVEVIEW INTEGRATION
+     ======================================== --%>
+
+<%!-- Button with phx-click event --%>
+<button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors" phx-click="save_changes">
+  Save Changes
+</button>
+
+<%!-- Button with phx-value attributes --%>
+<button
+  class="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-700 rounded-lg transition-colors dark:hover:bg-slate-800 dark:text-slate-300"
+  phx-click="delete_item"
+  phx-value-id={@item.id}
+  data-confirm="Are you sure?"
+>
+  Delete
+</button>
+
+<%!-- Disabled based on socket state --%>
+<button
+  class={[
+    "px-4 py-2 rounded-lg font-semibold transition-colors",
+    if(@draft_status != :active or not @has_changes,
+      do: "bg-slate-300 text-slate-500 cursor-not-allowed",
+      else: "bg-rose-500 hover:bg-rose-600 text-white")
+  ]}
+  phx-click="submit_form"
+  disabled={@draft_status != :active or not @has_changes}
+>
+  Save Version
+</button>
+
+
+<%!-- ========================================
+     BUTTON GROUPS
+     ======================================== --%>
+
+<%!-- Button group with rounded ends --%>
+<div class="inline-flex rounded-lg overflow-hidden border border-slate-300 dark:border-slate-600">
+  <button class="px-4 py-2 bg-white hover:bg-slate-100 text-slate-700 border-r border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
+    Button 1
+  </button>
+  <button class="px-4 py-2 bg-rose-500 text-white">
+    Button 2
+  </button>
+  <button class="px-4 py-2 bg-white hover:bg-slate-100 text-slate-700 border-l border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
+    Button 3
+  </button>
+</div>
+
+<%!-- Mode toggle from actual project --%>
+<div class="flex w-full rounded-lg overflow-hidden border border-slate-300 dark:border-slate-600">
+  <.link
+    navigate={~p"/model/#{@model_uuid}/version/#{@version_number}/chat"}
+    class="flex-1 px-4 py-2 text-center bg-white hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300"
+  >
+    Chat
+  </.link>
+  <button class="flex-1 px-4 py-2 text-center bg-rose-500 text-white">
+    Edit
+  </button>
+</div>
+
+
+<%!-- ========================================
+     BUTTONS WITH ICONS
+     ======================================== --%>
+
+<%!-- Button with icon (using Heroicons) --%>
+<button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors flex items-center gap-2">
+  <.icon name="hero-plus" class="size-4" />
+  Create New
+</button>
+
+<%!-- Icon-only button --%>
+<button class="p-2 bg-transparent hover:bg-slate-100 text-slate-600 rounded-lg transition-colors dark:hover:bg-slate-800 dark:text-slate-400">
+  <.icon name="hero-ellipsis-vertical" class="size-5" />
+</button>
+
+
+<%!-- ========================================
+     NAVIGATION BUTTONS
+     ======================================== --%>
+
+<%!-- Link styled as button --%>
+<.link href={~p"/sign-in"} class="w-full py-3 px-4 bg-rose-500 hover:bg-rose-600 text-white text-center rounded-lg font-semibold transition-colors block">
+  Sign In
+</.link>
+
+<%!-- Navigate with button styling --%>
+<.button navigate={~p"/home"}>Home</.button>
+
+<%!-- Using core component button --%>
+<.button phx-click="go" variant="primary">Send!</.button>
+
+
+<%!-- ========================================
+     SPECIAL BUTTON PATTERNS
+     ======================================== --%>
+
+<%!-- Full width button --%>
+<button class="w-full py-3 px-4 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+  Full Width Button
+</button>
+
+<%!-- Button with badge --%>
+<button class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-lg font-semibold transition-colors flex items-center gap-2 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100">
+  Notifications
+  <span class="px-1.5 py-0.5 text-xs bg-red-500 text-white rounded-full">3</span>
+</button>
+
+<%!-- Action buttons in card --%>
+<div class="flex justify-end gap-2">
+  <button class="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-700 rounded-lg transition-colors dark:hover:bg-slate-800 dark:text-slate-300">
+    Cancel
+  </button>
+  <button class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-semibold transition-colors">
+    Save
+  </button>
+</div>
+
+
+<%!-- ========================================
+     COMMON PATTERNS FROM PROJECT
+     ======================================== --%>
+
+<%!-- Sidebar action button --%>
+<button class="w-full px-3 py-2 text-sm border border-slate-300 hover:border-slate-400 text-slate-700 rounded-lg transition-colors dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300" phx-click="new_chat">
+  New chat session
+</button>
+
+<%!-- Draft action buttons --%>
+<div class="border-t border-slate-200 dark:border-slate-700 pt-4 space-y-3">
+  <button
+    class={[
+      "w-full px-3 py-2 text-sm border rounded-lg transition-colors",
+      if(@draft_status != :active,
+        do: "border-slate-200 text-slate-400 cursor-not-allowed dark:border-slate-700",
+        else: "border-slate-300 hover:border-slate-400 text-slate-700 dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300")
+    ]}
+    phx-click="discard_draft"
+    disabled={@draft_status != :active}
+  >
+    Discard draft
+  </button>
+  <button
+    class={[
+      "w-full px-3 py-2 text-sm rounded-lg font-semibold transition-colors",
+      if(@draft_status != :active or not @has_changes,
+        do: "bg-slate-300 text-slate-500 cursor-not-allowed",
+        else: "bg-rose-500 hover:bg-rose-600 text-white")
+    ]}
+    phx-click="save_draft"
+    disabled={@draft_status != :active or not @has_changes}
+  >
+    Save version
+  </button>
+</div>
+
+
+<%!-- ========================================
+     ACCESSIBILITY NOTES
+     ======================================== --%>
+
+<%!--
+All buttons should include:
+- Proper focus states (focus:outline, focus:ring)
+- Keyboard navigation support (tab, enter, space)
+- Appropriate cursor (cursor-pointer)
+- Disabled state styling
+
+For screen readers, add aria-label when button text is unclear:
+--%>
+
+<button class="p-2 bg-transparent hover:bg-slate-100 text-slate-600 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" aria-label="Open menu">
+  <.icon name="hero-bars-3" class="size-5" />
+</button>

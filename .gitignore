@@ -1,0 +1,8 @@
+.obsidian
+
+# Nix
+result
+result-*
+
+# Direnv
+.direnv/

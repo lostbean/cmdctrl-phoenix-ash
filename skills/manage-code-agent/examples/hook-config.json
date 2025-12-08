@@ -1,0 +1,125 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/auto-format.sh",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-test.sh",
+            "timeout": 300000
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-format.sh",
+            "timeout": 30000
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__github__*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/github-permission.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/log-bash-usage.sh",
+            "timeout": 1000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/inject-context.sh",
+            "timeout": 2000
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-start-context.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-cleanup.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Analyze the conversation and decide if we should continue. If the task is complete, return {\"decision\": \"approve\", \"continue\": false}. If more work is needed, return {\"decision\": \"approve\", \"continue\": true}.",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/log-subagent.sh",
+            "timeout": 2000
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/log-permission-request.sh",
+            "timeout": 1000
+          }
+        ]
+      }
+    ]
+  }
+}

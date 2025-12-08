@@ -1,0 +1,22 @@
+{
+  "agents": {
+    "architect": {
+      "path": "agents/architect.md"
+    },
+    "code-reviewer": {
+      "path": "agents/code-reviewer.md"
+    },
+    "debugger": {
+      "path": "agents/debugger.md"
+    },
+    "explorer": {
+      "path": "agents/explorer.md"
+    },
+    "implementer": {
+      "path": "agents/implementer.md"
+    },
+    "qa-tester": {
+      "path": "agents/qa-tester.md"
+    }
+  }
+}
