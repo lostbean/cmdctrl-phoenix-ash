@@ -209,7 +209,7 @@ the investigation, design, implementation, review, and testing work.
 
 ## Server Management During Issue Resolution
 
-**See**: `../../.claude/references/dev-app-management.md` for complete rules.
+**See**: `../references/dev-app-management.md` for complete rules.
 
 - If Tidewave MCP available, app is at http://localhost:4000
 - Phoenix hot-reloads during investigation - changes apply immediately

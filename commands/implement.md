@@ -52,7 +52,7 @@ the design, implementation, review, and testing work.
 
 ## Server Management During Implementation
 
-**See**: `../../.claude/references/dev-app-management.md` for complete rules.
+**See**: `../references/dev-app-management.md` for complete rules.
 
 - Phoenix hot-reloads code automatically - changes apply immediately
 - Never stop/start server or reset dev DB - ask user

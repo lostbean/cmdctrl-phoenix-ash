@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/auto-format.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/auto-format.sh",
             "timeout": 10000
           }
         ]
@@ -16,12 +16,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/pre-commit-test.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-test.sh",
             "timeout": 300000
           },
           {
             "type": "command",
-            "command": ".claude/hooks/pre-commit-format.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-format.sh",
             "timeout": 30000
           }
         ]
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/github-permission.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/github-permission.sh",
             "timeout": 5000
           }
         ]
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/log-bash-usage.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/log-bash-usage.sh",
             "timeout": 1000
           }
         ]
@@ -55,7 +55,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/inject-context.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/inject-context.sh",
             "timeout": 2000
           }
         ]
@@ -67,7 +67,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-start-context.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start-context.sh",
             "timeout": 5000
           }
         ]
@@ -79,7 +79,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-cleanup.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-cleanup.sh",
             "timeout": 5000
           }
         ]
@@ -103,7 +103,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/log-subagent.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/log-subagent.sh",
             "timeout": 2000
           }
         ]
@@ -115,7 +115,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/log-permission-request.sh",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/log-permission-request.sh",
             "timeout": 1000
           }
         ]

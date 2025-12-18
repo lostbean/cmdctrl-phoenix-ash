@@ -62,7 +62,7 @@ stories, flows, or feature areas **Output**:
 
 ## CRITICAL: Server Management During Testing
 
-**See**: `../../.claude/references/dev-app-management.md` for complete rules.
+**See**: `../references/dev-app-management.md` for complete rules.
 
 **ENFORCEMENT - You MUST follow these rules**:
 

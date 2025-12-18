@@ -260,7 +260,7 @@ The qa-tester validates at three layers:
 
 ### Application Running
 
-**See**: `../../.claude/references/dev-app-management.md` for complete rules.
+**See**: `../references/dev-app-management.md` for complete rules.
 
 - If Tidewave MCP available, app is at http://localhost:4000
 - Never stop/start server or reset dev DB - ask user
