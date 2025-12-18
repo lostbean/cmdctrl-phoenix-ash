@@ -1,6 +1,6 @@
 ---
 name: phoenix-liveview
-description:
+description: |
   Phoenix LiveView patterns and real-time UI development. Use when implementing
   LiveView pages, handling PubSub events, building components, managing
   real-time updates, or working with dynamic interfaces.

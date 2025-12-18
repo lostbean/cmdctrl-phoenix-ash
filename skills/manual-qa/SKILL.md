@@ -1,8 +1,8 @@
 ---
-name: Manual QA Testing
-description:
+name: manual-qa
+description: |
   Execute comprehensive manual QA testing using browser automation and backend
-  inspection tools
+  inspection tools.
 ---
 
 # Manual QA Testing Skill

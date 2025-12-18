@@ -1,6 +1,6 @@
 ---
 name: reactor-oban
-description:
+description: |
   Reactor workflows and Oban background jobs for Elixir applications - use this
   skill when working with multi-step transactional workflows (sagas), background
   job processing, compensation patterns, or integrating workflows with jobs.

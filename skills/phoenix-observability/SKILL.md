@@ -1,6 +1,6 @@
 ---
 name: phoenix-observability
-description:
+description: |
   Phoenix GraphQL observability for LLM and application traces. Use when
   analyzing LLM performance, debugging API calls, querying traces and spans, or
   investigating OpenTelemetry telemetry data.

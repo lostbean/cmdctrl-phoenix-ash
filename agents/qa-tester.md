@@ -1,6 +1,6 @@
 ---
 name: qa-tester
-description:
+description: |
   End-to-end testing specialist using MCP tools for browser automation and
   backend inspection. Invoked to validate features and workflows.
 model: haiku

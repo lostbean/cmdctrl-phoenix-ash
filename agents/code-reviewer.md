@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description:
+description: |
   Expert code reviewer for Elixir/Phoenix/Ash applications. Invoked to review
   code quality, security, design alignment, and best practices. Provides
   structured reports with prioritized findings.

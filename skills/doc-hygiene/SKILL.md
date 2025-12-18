@@ -1,6 +1,6 @@
 ---
 name: doc-hygiene
-description:
+description: |
   Documentation meta-patterns and hygiene principles for maintaining
   documentation. Use this skill when creating or refactoring documentation to
   ensure single source of truth, progressive disclosure, and proper

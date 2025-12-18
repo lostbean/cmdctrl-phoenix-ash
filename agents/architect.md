@@ -1,6 +1,6 @@
 ---
 name: architect
-description:
+description: |
   Design architect that reviews current design, generates multiple solution
   options sorted by quality, and updates DESIGN/ documentation. Invoked for
   design decisions, refactoring, and feature planning.

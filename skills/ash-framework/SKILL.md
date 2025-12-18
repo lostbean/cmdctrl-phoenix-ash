@@ -1,6 +1,6 @@
 ---
 name: ash-framework
-description:
+description: |
   Ash Framework patterns for Elixir applications - use this skill when working
   with Ash resources, policies, actor context, changesets, transactions, or
   Reactor workflows. Essential for authorization, multi-tenancy, and

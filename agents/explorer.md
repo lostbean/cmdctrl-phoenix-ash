@@ -1,6 +1,6 @@
 ---
 name: explorer
-description:
+description: |
   Gather context from code, design docs, and TODOs for design decisions. Invoked
   before architect to provide comprehensive codebase context.
 tools: Read, Glob, Grep, Bash, mcp__tidewave__*

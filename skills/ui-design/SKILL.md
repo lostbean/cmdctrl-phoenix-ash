@@ -1,6 +1,6 @@
 ---
 name: ui-design
-description:
+description: |
   TailwindCSS UI design patterns for Phoenix applications. Use when building UI
   components, styling pages, implementing responsive layouts, or working with
   design systems.

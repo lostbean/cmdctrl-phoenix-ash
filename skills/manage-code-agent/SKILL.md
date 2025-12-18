@@ -1,6 +1,6 @@
 ---
 name: manage-code-agent
-description:
+description: |
   Manage Claude Code skills, commands, agents, and hooks. Use when creating or
   updating skills, commands, agents, or hooks.
 ---

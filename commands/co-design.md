@@ -1,7 +1,7 @@
 ---
 description:
   Collaborative design workflow - refine ideas into well-structured
-  specifications through interactive exploration and architect guidance
+  specifications
 argument-hint: "[feature description or idea]"
 ---
 

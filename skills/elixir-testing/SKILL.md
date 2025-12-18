@@ -1,6 +1,6 @@
 ---
 name: elixir-testing
-description:
+description: |
   Elixir testing patterns and best practices for Phoenix/Ash applications using
   ExUnit, Ash Framework, and ReqCassette. Use this skill when writing or
   debugging tests, understanding test organization, or implementing test

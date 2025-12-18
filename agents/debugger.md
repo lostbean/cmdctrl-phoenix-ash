@@ -1,6 +1,6 @@
 ---
 name: debugger
-description:
+description: |
   Investigates issues using MCP tools (logs, database, UI inspection).
   Identifies root causes and proposes solution options. Invoked for bug fixes
   and issue investigation.

@@ -1,6 +1,6 @@
 ---
 name: implementer
-description:
+description: |
   Generates production-ready code following best practices. Writes code, tests,
   and documentation. Invoked after design approval to implement solutions.
 model: inherit
