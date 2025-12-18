@@ -19,19 +19,14 @@ Elixir/Phoenix/Ash stack:
 
 ## Installation
 
-Install the plugin using Claude Code:
+Add the marketplace and install the plugin:
 
 ```bash
-claude plugin install lostbean/cmdctrl-phoenix-ash
+/plugin marketplace add lostbean/cmdctrl-phoenix-ash
+/plugin install cmdctrl-phoenix-ash@cmdctrl-phoenix-ash
 ```
 
-Or add to your project's `.claude/settings.json`:
-
-```json
-{
-  "plugins": ["lostbean/cmdctrl-phoenix-ash"]
-}
-```
+No npm, no build step. Just GitHub.
 
 ## Quick Start
 

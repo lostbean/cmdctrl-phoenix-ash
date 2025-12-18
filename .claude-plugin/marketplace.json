@@ -1,0 +1,15 @@
+{
+  "name": "cmdctrl",
+  "owner": {
+    "name": "Edgar Gomes de Araujo",
+    "email": "talktoedgar@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "cmdctrl-phoenix-ash",
+      "source": "./",
+      "description": "Comprehensive Claude Code plugin for Elixir/Phoenix/Ash development with specialized agents, skills, and workflows",
+      "version": "1.0.0"
+    }
+  ]
+}

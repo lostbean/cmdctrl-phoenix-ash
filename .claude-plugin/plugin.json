@@ -2,7 +2,10 @@
   "name": "elixir-phoenix-ash-toolkit",
   "version": "1.0.0",
   "description": "Comprehensive Claude Code plugin for Elixir/Phoenix/Ash development with specialized agents, skills, and workflows",
-  "author": "Edgar Gomes de Araujo",
+  "author": {
+    "name": "Edgar Gomes de Araujo",
+    "email": "talktoedgar@gmail.com"
+  },
   "repository": "https://github.com/lostbean/cmdctrl-phoenix-ash",
   "keywords": [
     "elixir",
