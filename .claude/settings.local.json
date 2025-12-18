@@ -5,7 +5,9 @@
       "Bash(tree:*)",
       "Bash(mkdir:*)",
       "Bash(grep:*)",
-      "WebFetch(domain:docs.claude.com)"
+      "WebFetch(domain:docs.claude.com)",
+      "Bash(find:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

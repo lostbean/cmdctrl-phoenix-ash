@@ -1,5 +1,5 @@
 {
-  "name": "elixir-phoenix-ash-toolkit",
+  "name": "cmdctrl-phoenix-ash",
   "version": "1.0.0",
   "description": "Comprehensive Claude Code plugin for Elixir/Phoenix/Ash development with specialized agents, skills, and workflows",
   "author": {
@@ -7,6 +7,7 @@
     "email": "talktoedgar@gmail.com"
   },
   "repository": "https://github.com/lostbean/cmdctrl-phoenix-ash",
+  "license": "MIT",
   "keywords": [
     "elixir",
     "phoenix",
@@ -15,5 +16,8 @@
     "oban",
     "reactor"
   ],
-  "license": "MIT"
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
 }
