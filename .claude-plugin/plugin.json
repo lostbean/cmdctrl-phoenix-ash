@@ -17,7 +17,13 @@
     "reactor"
   ],
   "commands": "./commands/",
-  "agents": "./agents/",
-  "skills": "./skills/",
+  "agents": [
+    "./agents/architect.md",
+    "./agents/code-reviewer.md",
+    "./agents/debugger.md",
+    "./agents/explorer.md",
+    "./agents/implementer.md",
+    "./agents/qa-tester.md"
+  ],
   "hooks": "./hooks/hooks.json"
 }

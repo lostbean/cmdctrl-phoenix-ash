@@ -23,7 +23,7 @@ Add the marketplace and install the plugin:
 
 ```bash
 /plugin marketplace add lostbean/cmdctrl-phoenix-ash
-/plugin install cmdctrl-phoenix-ash@cmdctrl-phoenix-ash
+/plugin install cmdctrl-phoenix-ash@cmdctrl
 ```
 
 No npm, no build step. Just GitHub.
