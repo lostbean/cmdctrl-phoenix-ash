@@ -1,5 +1,5 @@
 ---
-description:
+description: |
   Collaborative design workflow - refine ideas into well-structured
   specifications
 argument-hint: "[feature description or idea]"

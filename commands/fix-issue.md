@@ -1,5 +1,5 @@
 ---
-description:
+description: |
   Systematic issue resolution with investigation, design, implementation, and
   testing
 ---

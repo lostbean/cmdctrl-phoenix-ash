@@ -1,5 +1,5 @@
 ---
-description:
+description: |
   Complete feature implementation with design, code, review, and testing
 argument-hint: "[feature description]"
 ---

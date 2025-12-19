@@ -1,5 +1,5 @@
 ---
-description:
+description: |
   Create or update Claude Code skills, commands, agents, and hooks following
   best practices
 argument-hint: "[skill|agent|command|hook] [name] [description]"

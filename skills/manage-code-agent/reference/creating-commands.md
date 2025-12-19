@@ -112,8 +112,7 @@ argument-hint: "[required-arg] [optional-arg]"
 - **Content**: What command does AND when to use
 - **Example**:
   ```yaml
-  description:
-    Complete feature implementation with design, code, review, and testing
+  description: Complete feature implementation with design, code, review, and testing
   ```
 
 #### argument-hint (required)

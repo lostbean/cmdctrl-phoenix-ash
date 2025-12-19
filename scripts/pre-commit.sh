@@ -23,7 +23,7 @@ echo "Running formatters..."
 # Format Markdown files
 echo "Formatting Markdown..."
 find . -name "*.md" -not -path "./.git/*" -not -path "./node_modules/*" -print0 |
-  xargs -0 -r prettier --write --prose-wrap always 2>/dev/null || true
+  xargs -0 -r prettier --write --prose-wrap preserve 2>/dev/null || true
 
 # Format JSON files
 echo "Formatting JSON..."
