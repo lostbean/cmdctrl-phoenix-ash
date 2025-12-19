@@ -819,3 +819,11 @@ See [@manage-code-agent](@manage-code-agent) skill for complete guidelines on:
 | Agent     | `.claude/agents/{name}.md`   | Single file                       | name, description, tools, model  |
 | Command   | `.claude/commands/{name}.md` | Single file                       | description, argument-hint       |
 | Hook      | `.claude/hooks/{name}.sh`    | Script + JSON config              | JSON in settings.json            |
+
+---
+
+## Execute
+
+**Component Specification:** $ARGUMENTS
+
+Follow the workflow above to create this component.

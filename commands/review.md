@@ -447,3 +447,11 @@ Code reviewer can:
 Code review catches issues before they reach production. Use it early and often.
 
 **Catch issues early. Fix them quickly. Learn continuously.**
+
+---
+
+## Execute
+
+**Review Target:** $ARGUMENTS
+
+Follow the workflow above to review this target.

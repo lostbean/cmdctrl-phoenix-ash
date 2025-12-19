@@ -276,3 +276,11 @@ Good design saves time during implementation. Use this command before starting
 complex features or major refactorings.
 
 **Think deeply. Design carefully. Document thoroughly.**
+
+---
+
+## Execute
+
+**Design Challenge:** $ARGUMENTS
+
+Follow the workflow above to handle this design challenge.

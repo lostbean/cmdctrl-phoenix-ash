@@ -569,3 +569,11 @@ Good QA catches issues before users do. Test early, test often, test
 comprehensively.
 
 **Find bugs early. Document completely. Prevent regressions.**
+
+---
+
+## Execute
+
+**Test Request:** $ARGUMENTS
+
+Follow the workflow above to handle this test request.

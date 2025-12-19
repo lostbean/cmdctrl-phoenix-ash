@@ -385,3 +385,11 @@ Good implementation starts with good design. Use the architect to explore
 options before writing code.
 
 **Think before coding. Code with quality. Validate with rigor.**
+
+---
+
+## Execute
+
+**Feature to Implement:** $ARGUMENTS
+
+Follow the workflow above to implement this feature.

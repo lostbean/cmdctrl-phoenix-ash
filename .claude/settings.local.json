@@ -7,7 +7,8 @@
       "Bash(grep:*)",
       "WebFetch(domain:docs.claude.com)",
       "Bash(find:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(head:*)"
     ],
     "deny": [],
     "ask": []

@@ -887,3 +887,11 @@ Next:
 ```
 
 **When in doubt, co-design it out!** 🎨
+
+---
+
+## Execute
+
+**Feature/Idea:** $ARGUMENTS
+
+Follow the workflow above to co-design this feature or idea.

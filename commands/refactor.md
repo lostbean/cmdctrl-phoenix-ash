@@ -340,3 +340,11 @@ Good refactoring makes code better without changing behavior. Use architect
 guidance, execute carefully, review thoroughly, and test completely.
 
 **Improve quality. Preserve functionality. Maintain velocity.**
+
+---
+
+## Execute
+
+**Refactor Target:** $ARGUMENTS
+
+Follow the workflow above to refactor this target.
